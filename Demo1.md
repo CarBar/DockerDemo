@@ -9,5 +9,3 @@
 1. dotnet restore
 1. dotnet run
 1. Browse http://localhost:8000/api/values
-
-### Start a linux sql container and attach to it.

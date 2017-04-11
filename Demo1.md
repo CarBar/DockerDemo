@@ -33,3 +33,31 @@
 1. `docker run -d -p 8000:5000 -t awecome_api:dockerdemo`
 1. http://localhost:8000/api/values
 
+### Building a database
+1. `docker create -v /var/opt/mssql --name awesomesql microsoft/mssql-server-linux /bin/true`
+1. `docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Test@123' -p 1433:1433 --volumes-from awesomesql -d --name awesome_sql microsoft/mssql-server-linux`
+1. Connect to (local)
+1. Create **AwesomeData**
+1. Create some data
+
+    ```sql
+    CREATE TABLE AwesomeWords (
+        id int IDENTITY(1,1) PRIMARY KEY,
+        word varchar(256)
+    );
+
+    GO
+
+    INSERT INTO [dbo].[AwesomeWords]
+              ([word])
+        VALUES
+              ('Awesome'),
+              ('Great'),
+              ('Fabulous'),
+              ('Spectacular')
+
+    GO
+    ```
+
+### Building a network
+1. `docker network create --driver bridge awesome_network`

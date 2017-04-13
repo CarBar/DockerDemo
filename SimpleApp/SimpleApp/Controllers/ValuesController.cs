@@ -44,7 +44,7 @@ namespace SimpleApp.Controllers
         {
         }
 
-        private string _connStr = "Server = simpledata; User Id = sa; Password= Pass@word; Database = ApplicationDb; Trusted_Connection = False;";
+        private string _connStr = "Server=simpledata; User Id=sa; Password=Pass@word; Database=ApplicationDb; Trusted_Connection=False;";
 
         private IEnumerable<string> ReadAll()
         {

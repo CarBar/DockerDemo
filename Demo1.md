@@ -61,3 +61,10 @@
 
 ### Building a network
 1. `docker network create --driver bridge awesome_network`
+1. Use --net=<name of network> in your docker run commands to add containers to the network.
+
+### Docker-Compose
+
+```yml
+
+```

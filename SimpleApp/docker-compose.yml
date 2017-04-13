@@ -6,3 +6,5 @@ services:
     build:
       context: ./SimpleApp
       dockerfile: Dockerfile
+  simpledata:
+    image: microsoft/mssql-server-linux

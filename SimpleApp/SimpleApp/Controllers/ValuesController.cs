@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
+using System.Data.SqlClient;
+using Dapper;
 
 namespace SimpleApp.Controllers
 {
@@ -13,7 +16,7 @@ namespace SimpleApp.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return ReadAll();
         }
 
         // GET api/values/5
@@ -39,6 +42,17 @@ namespace SimpleApp.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        private string _connStr = "Server = simpledata; User Id = sa; Password= Pass@word; Database = ApplicationDb; Trusted_Connection = False;";
+
+        private IEnumerable<string> ReadAll()
+        {
+            using (IDbConnection db = new SqlConnection(_connStr))
+            {
+                var readValues = "select word from SimpleValues";
+                return db.Query<string>(readValues, CommandType.Text);
+            }
         }
     }
 }

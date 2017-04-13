@@ -2,12 +2,12 @@
 
 http://slides.com/carterbarnes/innovating-development-and-infrastructure-using-docker-containers#/
 
-## Docker Demo 1 : Cli
+## Demo 1 : Cli
 
 ### Start dotnet container and build a webapi template in it.
 1. mkdir Demo1
 1. cd Demo1
-1. docker run -p 8000:5000 -v ${PWD}:/app -e "ASPNETCORE_URLS=http://+:5000" -it --rm microsoft/dotnet
+1. `docker run -p 8000:5000 -v ${PWD}:/app -e "ASPNETCORE_URLS=http://+:5000" -it --rm microsoft/dotnet`
 1. cd app
 1. dotnet new webapi
 1. dotnet restore
@@ -15,9 +15,11 @@ http://slides.com/carterbarnes/innovating-development-and-infrastructure-using-d
 1. http://localhost:8000/api/values
 
 ### Building a database
-1. `docker create -v /var/opt/mssql --name awesomesql microsoft/mssql-server-linux /bin/true`
-1. `docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Test@123' -p 1433:1433 --volumes-from awesomesql -d --name awesome_sql microsoft/mssql-server-linux`
-1. Connect to (local)
+https://hub.docker.com/r/microsoft/mssql-server-linux/
+
+1. `docker volume create DataDisk`
+1. `docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Test@123' -p 1433:1433 -v DataDisk:/var/opt/mssql -d --name awesome_sql microsoft/mssql-server-linux`
+1. *Sql Server Management Studio*
 1. Create **AwesomeData**
 1. Create some data
 
@@ -40,6 +42,8 @@ http://slides.com/carterbarnes/innovating-development-and-infrastructure-using-d
     GO
     ```
 
+## Demo 2 : Dockerfile
+
 ### Make a dockerfile to start this container.
 1. Dockerfile
 
@@ -60,7 +64,7 @@ http://slides.com/carterbarnes/innovating-development-and-infrastructure-using-d
     ```
 
 1. `docker build -t carbar/awesome:dockerdemo .`
-1. `docker run -d -p 8000:5000 -t awecome_api:dockerdemo`
+1. `docker run -d -p 8000:5000 -t carbar/awesome:dockerdemo`
 1. http://localhost:8000/api/values
 
 ### Building a network

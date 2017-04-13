@@ -44,13 +44,13 @@ namespace SimpleApp.Controllers
         {
         }
 
-        private string _connStr = "Server=simpledata; User Id=sa; Password=Pass@word; Database=ApplicationDb; Trusted_Connection=False;";
+        private string _connStr = "Server=simpledata; User Id=sa; Password=Test@123; Database=AwesomeData; Trusted_Connection=False;";
 
         private IEnumerable<string> ReadAll()
         {
             using (IDbConnection db = new SqlConnection(_connStr))
             {
-                var readValues = "select word from SimpleValues";
+                var readValues = "select word from AwesomeWords";
                 return db.Query<string>(readValues, CommandType.Text);
             }
         }

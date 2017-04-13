@@ -4,12 +4,12 @@ services:
   simpleapp:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionString=Server=sql.data;Database=SimplePersistence;User Id=sa;Password=Pass@word
+      - ConnectionString=Server=sql.data;Database=AwesomeData;User Id=sa;Password=Test@123
     ports:
       - "5000:80"
   simpledata:
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=Pass@word
+      - SA_PASSWORD=Test@123
     ports:
       - "1433:1433"
